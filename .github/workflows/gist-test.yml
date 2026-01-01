@@ -12,8 +12,9 @@ jobs:
     steps:
       - name: Clone gist
         run: |
-          git clone https://x-access-token:${{ secrets.GIST_TOKEN }}@gist.github.com/kpj2006/499740a475592025478e29d47c7138da.git gist-data
-
+         git clone https://x-access-token:${{ secrets.GIST_TOKEN }}@gist.github.com/499740a475592025478e29d47c7138da.git gist-data
+         cd gist-data
+         git remote set-url origin https://x-access-token:${{ secrets.GIST_TOKEN }}@gist.github.com/499740a475592025478e29d47c7138da.git
       - name: Write test file
         run: |
           cd gist-data
