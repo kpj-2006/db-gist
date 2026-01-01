@@ -1,31 +1,31 @@
-name: Test gist write
+# name: Test gist write
 
-on:
-  pull_request:
-    types: [closed]
+# on:
+#   pull_request:
+#     types: [closed]
 
-jobs:
-  test:
-    if: github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
+# jobs:
+#   test:
+#     if: github.event.pull_request.merged == true
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Clone gist
-        run: |
-         git clone https://x-access-token:${{ secrets.GIST_TOKEN }}@gist.github.com/499740a475592025478e29d47c7138da.git gist-data
-         cd gist-data
-         git remote set-url origin https://x-access-token:${{ secrets.GIST_TOKEN }}@gist.github.com/499740a475592025478e29d47c7138da.git
-      - name: Write test file
-        run: |
-          cd gist-data
-          mkdir -p users
-          echo "test = true" > users/test.toml
+#     steps:
+#       - name: Clone gist
+#         run: |
+#          git clone https://x-access-token:${{ secrets.GIST_TOKEN }}@gist.github.com/499740a475592025478e29d47c7138da.git gist-data
+#          cd gist-data
+#          git remote set-url origin https://x-access-token:${{ secrets.GIST_TOKEN }}@gist.github.com/499740a475592025478e29d47c7138da.git
+#       - name: Write test file
+#         run: |
+#           cd gist-data
+#           mkdir -p users
+#           echo "test = true" > users/test.toml
 
-      - name: Commit and push
-        run: |
-          cd gist-data
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add .
-          git commit -m "Test write from GitHub Actions"
-          git push
+#       - name: Commit and push
+#         run: |
+#           cd gist-data
+#           git config user.name "github-actions"
+#           git config user.email "github-actions@github.com"
+#           git add .
+#           git commit -m "Test write from GitHub Actions"
+#           git push
