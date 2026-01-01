@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Clone gist
         run: |
-          git clone https://x-access-token:${{ secrets.GIST_TOKEN }}@gist.github.com/abcdef1234567890.git gist-data
+          git clone https://x-access-token:${{ secrets.GIST_TOKEN }}@gist.github.com/kpj2006/499740a475592025478e29d47c7138da.git gist-data
 
       - name: Write test file
         run: |
