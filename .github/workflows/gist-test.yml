@@ -1,0 +1,30 @@
+name: Test gist write
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  test:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone gist
+        run: |
+          git clone https://x-access-token:${{ secrets.GIST_TOKEN }}@gist.github.com/abcdef1234567890.git gist-data
+
+      - name: Write test file
+        run: |
+          cd gist-data
+          mkdir -p users
+          echo "test = true" > users/test.toml
+
+      - name: Commit and push
+        run: |
+          cd gist-data
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add .
+          git commit -m "Test write from GitHub Actions"
+          git push
