@@ -28,20 +28,19 @@ jobs:
 
           if [ ! -f "$FILE" ]; then
             cat > "$FILE" <<EOF
-schema_version = 1
+          schema_version = 1
 
-[github]
-login = "$USER"
+          [github]
+          login = "$USER"
 
-stats.total_prs = 1
+          stats.total_prs = 1
 
-[[prs]]
-repo = "$REPO"
-pr_number = $PR_NUMBER
-merged_at = "$MERGED_AT"
-EOF
+          [[prs]]
+          repo = "$REPO"
+          pr_number = $PR_NUMBER
+          merged_at = "$MERGED_AT"
+          EOF
           else
-            # Prevent double counting
             if grep -q "pr_number = $PR_NUMBER" "$FILE"; then
               echo "PR already recorded. Exiting."
               exit 0
@@ -53,11 +52,11 @@ EOF
 
             cat >> "$FILE" <<EOF
 
-[[prs]]
-repo = "$REPO"
-pr_number = $PR_NUMBER
-merged_at = "$MERGED_AT"
-EOF
+          [[prs]]
+          repo = "$REPO"
+          pr_number = $PR_NUMBER
+          merged_at = "$MERGED_AT"
+          EOF
           fi
 
       - name: Commit and push
